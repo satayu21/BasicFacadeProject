@@ -1,0 +1,13 @@
+<ul>
+  <li *ngFor="let employee of employees">
+    id: {{employee.id}}
+    email: {{employee.email}}
+    first name: {{employee.first_name}}
+    last name: {{employee.last_name}}
+    avatar: {{employee.avatar}}
+  </li>
+</ul>
+
+<button (click)="addEmployee()">addEmployee</button>
+<button (click)="editEmployee()">editEmployee</button>
+<button (click)="deleteEmployee()">deleteEmployee</button>
