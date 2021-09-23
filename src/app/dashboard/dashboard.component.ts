@@ -22,7 +22,6 @@ export class DashboardComponent implements OnInit {
   ) {
     this.store.select('employeeState').subscribe((data) => {
       this.employees = data.employees;
-      // console.log(this.employees);
     });
   }
 
@@ -30,6 +29,9 @@ export class DashboardComponent implements OnInit {
     this.employeeFacade.loadEmployee();
   }
 
+  /**
+   * Opens a dialog box and add that user details in the employee list
+   */
   public addEmployee() {
     const dialogRef = this.dialog.open(EmployeeDialogComponent, {
       width: '250px',
@@ -43,6 +45,9 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  /**
+   * Opens a dialog box and edit that user details in the employee list
+   */
   public editEmployee(employee: Employee) {
     const dialogRef = this.dialog.open(EmployeeDialogComponent, {
       width: '250px',
@@ -56,6 +61,9 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  /**
+   * Deletes a employee from the employee list
+   */
   public deleteEmployee(employee: Employee) {
     this.employeeFacade.deleteEmployee(employee);
   }

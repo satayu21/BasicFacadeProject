@@ -14,7 +14,7 @@ export class EmployeeDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public employee: Employee
   ) {}
 
-  cancel(): void {
+  public cancel(): void {
     this.dialogRef.close();
   }
 
