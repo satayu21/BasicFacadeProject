@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Employee, EmployeeState } from './models/employee.model';
 import * as EmployeesActions from './../store/employees.actions';
-import { EmployeeApiService } from './services/employee-api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +9,11 @@ import { EmployeeApiService } from './services/employee-api.service';
 export class EmployeeFacade {
 
   constructor(
-    private store: Store<{ employeeState: EmployeeState }>,
-    private employeeApiService: EmployeeApiService
+    private store: Store<{ employeeState: EmployeeState }>
   ) { }
 
   public loadEmployee() {
-    this.employeeApiService.getEmployees().subscribe((response: any) => {
-      this.store.dispatch(EmployeesActions.loadEmployees({employees: response.data}));
-    });
+    this.store.dispatch(EmployeesActions.loadEmployees());
   }
 
   public addEmployee(employee: Employee) {

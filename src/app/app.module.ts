@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { EmployeeEffects } from './store/employee.effects';
 import * as fromEmployee from './store/employees.reducer';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +31,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     AppRoutingModule,
     StoreModule.forRoot({ employeeState: fromEmployee.employeeReducer }),
+    EffectsModule.forRoot([EmployeeEffects]),
     BrowserAnimationsModule,
     MatTableModule,
     MatIconModule,

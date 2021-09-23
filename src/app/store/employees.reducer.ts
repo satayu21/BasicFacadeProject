@@ -8,7 +8,8 @@ export const initialState: EmployeeState = {
 
 const _employeeReducer = createReducer(
     initialState,
-    on(EmployeesActions.loadEmployees, (state, {employees}) => ({employees: [...state.employees, ...employees]})),
+    on(EmployeesActions.loadEmployees, (state) => state),
+    on(EmployeesActions.loadEmployeesSuccess, (state, {employees}) => ({employees: [...state.employees, ...employees]})),
     on(EmployeesActions.addEmployee, (state, {employee}) => ({employees: [...state.employees, employee]})),
     on(EmployeesActions.editEmployee, (state, {employee}) => {
         const employees = [...state.employees];
