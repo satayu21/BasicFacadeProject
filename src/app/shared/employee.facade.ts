@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Employee, EmployeeState } from '../models/employee.model';
-import * as EmployeesActions from '../../store/employees.actions';
-import { EmployeeApiService } from './employee-api.service';
+import { Employee, EmployeeState } from './models/employee.model';
+import * as EmployeesActions from './../store/employees.actions';
+import { EmployeeApiService } from './services/employee-api.service';
 
 @Injectable({
   providedIn: 'root'

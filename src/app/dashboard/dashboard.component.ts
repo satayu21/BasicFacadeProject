@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Employee, EmployeeState } from '../shared/models/employee.model';
-import { EmployeeFacade } from '../shared/services/employee.facade';
+import { EmployeeFacade } from '../shared/employee.facade';
 import { EmployeeDialogComponent } from '../shared/components/employee-dialog/employee-dialog.component';
 
 @Component({
