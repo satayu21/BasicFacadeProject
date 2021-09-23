@@ -7,3 +7,29 @@ img {
   width: 80px;
   border-radius: 50%;
 }
+
+.mat-row {
+  height: 90px;
+}
+
+.mat-header-cell, .mat-cell {
+  text-align: center;
+}
+
+.mat-header-row {
+  background-color: #673ab7;
+}
+
+.mat-header-cell {
+  color: white;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#add-employee-button {
+  display: block;
+  margin: 10px 50px auto auto;
+}
