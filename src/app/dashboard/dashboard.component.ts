@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Employee, EmployeeState } from '../shared/models/employee.model';
 import { EmployeeFacade } from '../shared/services/employee.facade';
+import { EmployeeDialogComponent } from '../shared/components/employee-dialog/employee-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,9 +12,14 @@ import { EmployeeFacade } from '../shared/services/employee.facade';
 })
 export class DashboardComponent implements OnInit {
 
+  public displayedColumns: string[] = ['id', 'avatar', 'email', 'first_name', 'last_name', 'actions'];
   public employees: Employee[] = [];
 
-  constructor(private employeeFacade: EmployeeFacade, private store: Store<{ employeeState: EmployeeState }>) {
+  constructor(
+    private employeeFacade: EmployeeFacade, 
+    private store: Store<{ employeeState: EmployeeState }>,
+    private dialog: MatDialog,
+  ) {
     this.store.select('employeeState').subscribe((data) => {
       this.employees = data.employees;
       // console.log(this.employees);
@@ -24,35 +31,32 @@ export class DashboardComponent implements OnInit {
   }
 
   public addEmployee() {
-    const employee: Employee = {
-      id: 2,
-      email: 'satayugayen22@gmail.com',
-      first_name: 'Sata',
-      last_name: 'Gaen',
-      avatar: 'url1'
-    };
-    this.employeeFacade.addEmployee(employee);
+    const dialogRef = this.dialog.open(EmployeeDialogComponent, {
+      width: '250px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.employeeFacade.addEmployee(result);
+      }
+    });
   }
 
-  public editEmployee() {
-    const employee: Employee = {
-      id: 2,
-      email: 'satayugayen20@gmail.com',
-      first_name: 'Satay',
-      last_name: 'Gayen',
-      avatar: 'url3'
-    };
-    this.employeeFacade.editEmployee(employee);
+  public editEmployee(employee: Employee) {
+    const dialogRef = this.dialog.open(EmployeeDialogComponent, {
+      width: '250px',
+      data: {...employee}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.employeeFacade.editEmployee(result);
+      }
+    });
   }
 
-  public deleteEmployee() {
-    const employee: Employee = {
-      id: 2,
-      email: 'satayugayen20@gmail.com',
-      first_name: 'Satay',
-      last_name: 'Gayen',
-      avatar: 'url3'
-    };
+  public deleteEmployee(employee: Employee) {
     this.employeeFacade.deleteEmployee(employee);
   }
 

@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Employee Details</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Id:</mat-label>
+    <input matInput [(ngModel)]="employee.id">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Email:</mat-label>
+    <input matInput [(ngModel)]="employee.email">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>First Name:</mat-label>
+    <input matInput [(ngModel)]="employee.first_name">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Last Name:</mat-label>
+    <input matInput [(ngModel)]="employee.last_name">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Avatar:</mat-label>
+    <input matInput [(ngModel)]="employee.avatar">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button [mat-dialog-close]="employee" cdkFocusInitial>Save</button>
+</div>
