@@ -9,7 +9,7 @@
   <!-- Avatar Column -->
   <ng-container matColumnDef="avatar">
     <th mat-header-cell *matHeaderCellDef> Avatar </th>
-    <td mat-cell *matCellDef="let employee"> {{employee.avatar}} </td>
+    <td mat-cell *matCellDef="let employee"><img [src]="employee.avatar" alt="Avatar Image"></td>
   </ng-container>
 
   <!-- Email Column -->

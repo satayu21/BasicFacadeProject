@@ -2,26 +2,26 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Employee, EmployeeState } from '../models/employee.model';
 import * as EmployeesActions from '../../store/employees.actions';
+import { EmployeeApiService } from './employee-api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeFacade {
 
-  constructor(private store: Store<{ employeeState: EmployeeState }>) { }
+  constructor(
+    private store: Store<{ employeeState: EmployeeState }>,
+    private employeeApiService: EmployeeApiService
+  ) { }
 
   public loadEmployee() {
-    const employee: Employee = {
-      id: 1,
-      email: 'satayugayen21@gmail.com',
-      first_name: 'Satayu',
-      last_name: 'Gayen',
-      avatar: 'url'
-    };
-    this.store.dispatch(EmployeesActions.loadEmployees({employees: [employee]}));
+    this.employeeApiService.getEmployees().subscribe((response: any) => {
+      this.store.dispatch(EmployeesActions.loadEmployees({employees: response.data}));
+    });
   }
 
   public addEmployee(employee: Employee) {
+    employee.id = Math.trunc(Math.random() * 100);
     this.store.dispatch(EmployeesActions.addEmployee({employee}));
   }
 
